@@ -1,0 +1,149 @@
+{
+  "base": "<base_url>",
+  "album": {
+    "id": "<album_id>",
+    "links": {
+      "self": {
+        "href": "albums/<album_id>"
+      }
+    }
+  },
+  "resources": [
+    {
+      "id": "<album_asset_id>",
+      "type": "album_asset",
+      "created": "<created_date>",
+      "updated": "<updated_date>",
+      "revision_ids": [
+        "<album_asset_revision_id1>",
+        "<album_asset_revision_id2>",
+        "<album_asset_revision_id3>"
+      ],
+      "links": {
+        "self": {
+          "href": "albums/<album_id>/assets/<asset_id>"
+        }
+      },
+      "asset": {
+        "id": "<asset_id>",
+        "type": "asset",
+        "subtype": "image",
+        "created": "<created_date>",
+        "updated": "<updated_date>",
+        "revision_ids": [
+          "<asset_revision_id1>",
+          "<asset_revision_id2>",
+          "<asset_revision_id3>"
+        ],
+        "links": {
+          "self": {
+            "href": "assets/<asset_id>"
+          },
+          "/rels/rendition_type/<rendition_type>": {
+            "href": "assets/<asset_id>/renditions/<rendition_type>"
+          }
+        },
+        "payload": {
+          "captureDate": "<image_capture_date>",
+          "importSource": {
+            "fileName": "<file_name>",
+            "fileSize": "<image_file_size>",
+            "originalWidth": "<image_width>",
+            "originalHeight": "<image_height>",
+            "sha256": "<image_sha256>",
+            "importedOnDevice": "<import_device_name>",
+            "importedBy": "<import_account_id>",
+            "importTimestamp": "<import_time>"
+          },
+          "<key>": "<value>",
+          "develop": {
+            "<dev_key>": "<dev_value>"
+          }
+        }
+      },
+      "payload": {
+        "order": "<order>",
+        "cover": true,
+        "<key>": "<value>"
+      }
+    },
+    {
+      "id": "<album_asset_id>",
+      "type": "album_asset",
+      "created": "<created_date>",
+      "updated": "<updated_date>",
+      "revision_ids": [
+        "<album_asset_revision_id1>",
+        "<album_asset_revision_id2>",
+        "<album_asset_revision_id3>"
+      ],
+      "links": {
+        "self": {
+          "href": "albums/<album_id>/assets/<asset_id>"
+        }
+      },
+      "asset": {
+        "id": "<asset_id>",
+        "type": "asset",
+        "subtype": "video",
+        "created": "<created_date>",
+        "updated": "<updated_date>",
+        "revision_ids": [
+          "<asset_revision_id1>",
+          "<asset_revision_id2>",
+          "<asset_revision_id3>"
+        ],
+        "links": {
+          "self": {
+            "href": "assets/<asset_id>"
+          },
+          "/rels/rendition_type/<rendition_type>": {
+            "href": "assets/<asset_id>/renditions/<rendition_type>"
+          }
+        },
+        "payload": {
+          "captureDate": "<image_capture_date>",
+          "importSource": {
+            "fileName": "<file_name>",
+            "fileSize": "<image_file_size>",
+            "originalWidth": "<image_width>",
+            "originalHeight": "<image_height>",
+            "sha256": "<image_sha256>",
+            "importedOnDevice": "<import_device_name>",
+            "importedBy": "<import_account_id>",
+            "importTimestamp": "<import_time>"
+          },
+          "video": {
+            "frameRate": [
+              "<video_frame_rate_numerator>",
+              "<video_frame_rate_denominator>"
+            ],
+            "duration": [
+              "<video_duration_numerator>",
+              "<video_duration_denominator>"
+            ],
+            "displayAspectRatio": [
+              "<video_aspect_ratio_numerator>",
+              "<video_aspect_ratio_denominator>"
+            ],
+            "storageWidth": "<video_storage_width>",
+            "storageHeight": "<video_storage_height>"
+          },
+          "<key>": "<value>",
+          "develop": {
+            "<dev_key>": "<dev_value>"
+          }
+        }
+      },
+      "payload": {}
+    }
+  ],
+  "links": {
+    "prev": {
+      "href": "albums/<album_id>/assets?captured_after=<first_captured_date>"
+    },
+    "next": {
+      "href": "albums/<album_id>/assets?captured_before=<last_captured_date>"
+    }
+  }
+}

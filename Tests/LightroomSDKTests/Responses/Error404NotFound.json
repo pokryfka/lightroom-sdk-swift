@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "<resource_type>": [
+      "does not exist"
+    ]
+  },
+  "code": 1000,
+  "description": "Resource not found"
+}

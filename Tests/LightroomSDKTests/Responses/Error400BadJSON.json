@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "body": [
+      "Must be valid JSON"
+    ]
+  },
+  "code": 1005,
+  "description": "Input Validation Error"
+}

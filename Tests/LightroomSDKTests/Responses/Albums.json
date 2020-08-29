@@ -1,0 +1,40 @@
+{
+  "base": "string",
+  "resources": [
+    {
+      "id": "string",
+      "created": "string",
+      "updated": "string",
+      "type": "album",
+      "subtype": "project",
+      "serviceId": "string",
+      "payload": {
+        "userCreated": "string",
+        "userUpdated": "string",
+        "name": "string",
+        "cover": {
+          "id": "string"
+        },
+        "parent": {
+          "id": "string"
+        },
+        "publishInfo": {
+          "servicePayload": "string",
+          "remoteId": "string",
+          "created": "string",
+          "updated": "string",
+          "deleted": true,
+          "remoteLinks": {
+            "edit": {
+              "href": "string"
+            },
+            "view": {
+              "href": "string"
+            }
+          }
+        }
+      },
+      "links": {}
+    }
+  ]
+}

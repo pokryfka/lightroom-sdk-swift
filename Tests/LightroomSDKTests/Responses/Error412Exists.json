@@ -1,0 +1,36 @@
+{
+  "base": "<base_url>",
+  "resources": [
+    {
+      "id": "<asset_id>",
+      "created": "<created_date>",
+      "created_by": "<account_id>",
+      "updated": "<updated_date>",
+      "links": {
+        "self": {
+          "href": "assets/<asset_id>"
+        },
+        "/rels/rendition_type/<rendition_type>": {
+          "href": "assets/<asset_id>/renditions/<rendition_type>"
+        }
+      },
+      "payload": {
+        "captureDate": "<image_capture_date>",
+        "importSource": {
+          "fileName": "<file_name>",
+          "fileSize": "<image_file_size>",
+          "originalWidth": "<image_width>",
+          "originalHeight": "<image_height>",
+          "sha256": "<image_sha256>",
+          "importedOnDevice": "<import_device_name>",
+          "importedBy": "<import_account_id>",
+          "importTimestamp": "<import_time>"
+        },
+        "<key>": "<value>",
+        "develop": {
+          "<dev_key>": "<dev_value>"
+        }
+      }
+    }
+  ]
+}

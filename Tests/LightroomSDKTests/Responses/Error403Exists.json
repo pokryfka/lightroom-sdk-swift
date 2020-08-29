@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "<resource_type>": [
+      "already exists"
+    ]
+  },
+  "code": 1002,
+  "description": "Resource already exists"
+}

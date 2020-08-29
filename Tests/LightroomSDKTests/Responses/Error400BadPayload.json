@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "payload.<key>.<subkey>": [
+      "invalid"
+    ]
+  },
+  "code": 1030,
+  "description": "Payload Validation Error"
+}

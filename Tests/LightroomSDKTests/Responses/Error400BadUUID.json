@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "<param_name>": [
+      "Must be a valid GUID"
+    ]
+  },
+  "code": 1005,
+  "description": "Input Validation Error"
+}

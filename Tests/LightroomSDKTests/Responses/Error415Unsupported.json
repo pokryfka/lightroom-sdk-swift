@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "content_type": [
+      "should be json"
+    ]
+  },
+  "code": 1003,
+  "description": "Invalid content type"
+}

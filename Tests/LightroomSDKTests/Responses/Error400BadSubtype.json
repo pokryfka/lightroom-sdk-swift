@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "<subtype>": [
+      "is invalid"
+    ]
+  },
+  "code": 1005,
+  "description": "Input Validation Error"
+}

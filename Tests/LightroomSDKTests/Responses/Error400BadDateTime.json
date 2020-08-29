@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "<param_name>": [
+      "must be a valid XML Schema dateTime"
+    ]
+  },
+  "code": 1005,
+  "description": "Input Validation Error"
+}

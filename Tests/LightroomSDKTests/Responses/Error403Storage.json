@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "<asset_id>": [
+      "quota exceeded"
+    ]
+  },
+  "code": 1034,
+  "description": "Too many assets"
+}

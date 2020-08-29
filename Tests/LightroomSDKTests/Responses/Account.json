@@ -1,0 +1,43 @@
+{
+  "base": "https://lr.adobe.io/",
+  "id": "96e656e3812b4c2fb670fa74b6a7ad74",
+  "type": "account",
+  "created": "2017-09-12T17:22:41.751746Z",
+  "updated": "2019-02-02T17:17:39.663862Z",
+  "email": "customer@domain.com",
+  "full_name": "Adobe Customer",
+  "first_name": "Adobe",
+  "last_name": "Customer",
+  "wcd_guid": "6CEE5CFE464CC743992017B8",
+  "country": "US",
+  "config": {
+    "nimbus_show_different_ui": true,
+    "search_index": true,
+    "purge_assets_after": 5184000
+  },
+  "entitlement": {
+    "status": "subscriber",
+    "trial": {
+      "start": "2017-09-12T17:22:41.751746Z",
+      "end": "2018-02-16T10:35:24.593005Z"
+    },
+    "current_subs": {
+      "product_id": "lightroom",
+      "store": "adobe",
+      "purchase_date": "2019-02-04T07:25:59.121277Z",
+      "sao": {
+        "inpkg_CCLE": "0",
+        "inpkg_CCSN": "0",
+        "inpkg_LRMP": "1",
+        "inpkg_PHLT": "0"
+      }
+    },
+    "storage": {
+      "used": 11998409416,
+      "warn": 85899345920,
+      "limit": 112742891520,
+      "display_limit": 107374182400
+    },
+    "deletion_date": "2020-05-06T15:17:51.216255Z"
+  }
+}

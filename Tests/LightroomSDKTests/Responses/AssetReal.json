@@ -1,0 +1,132 @@
+{
+    "base": "https://lr.adobe.io/v2/catalogs/1177ed49cba84ba69c4fa7bb6735d6e1/",
+    "id": "eefe488ece6249e084927658a4983caa",
+    "type": "asset",
+    "updated": "2020-08-30T09:20:10.824387Z",
+    "subtype": "image",
+    "created": "2020-01-13T03:20:08.534159Z",
+    "revision_ids": [
+        "09c273f675db4cd1be1cd647fccc1642",
+        "d162bf4b2eea1f2513a06c9d62a7bc42",
+        "987ed3953083300b9e38de762792e9ce",
+        "1eba0ffef87ff067bc40f24879ed2587",
+        "eba999a5dde9493f8bf6c3c65675e33a",
+        "34e979a175b641e0b3bb636567f99e7f",
+        "3dab2bf7f88a4c0a99053e8a4c389d09",
+        "31f168b1873b4334b2ca0fc824b66e6c"
+    ],
+    "links": {
+        "self": {
+            "href": "assets/eefe488ece6249e084927658a4983caa"
+        },
+        "/rels/rendition_type/2048": {
+            "href": "assets/eefe488ece6249e084927658a4983caa/renditions/2048"
+        },
+        "/rels/rendition_type/1280": {
+            "href": "assets/eefe488ece6249e084927658a4983caa/renditions/1280"
+        },
+        "/rels/rendition_type/640": {
+            "href": "assets/eefe488ece6249e084927658a4983caa/renditions/640"
+        },
+        "/rels/rendition_type/thumbnail2x": {
+            "href": "assets/eefe488ece6249e084927658a4983caa/renditions/thumbnail2x"
+        }
+    },
+    "payload": {
+        "develop": {
+            "processingModel": "lightroom",
+            "croppedHeight": 3024,
+            "croppedWidth": 4032,
+            "userOrientation": 3,
+            "crsVersion": "12.1",
+            "xmpCameraRaw": "<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"Adobe XMP Core 5.6-c140 79.160451, 2017/05/06-01:08:21        \">\n <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n  <rdf:Description rdf:about=\"\"\n    xmlns:crs=\"http://ns.adobe.com/camera-raw-settings/1.0/\"\n   crs:Version=\"12.1\"\n   crs:ProcessVersion=\"11.0\"\n   crs:WhiteBalance=\"As Shot\"\n   crs:Temperature=\"5001\"\n   crs:Tint=\"+10\"\n   crs:Saturation=\"0\"\n   crs:Sharpness=\"0\"\n   crs:LuminanceSmoothing=\"0\"\n   crs:ColorNoiseReduction=\"0\"\n   crs:VignetteAmount=\"0\"\n   crs:ShadowTint=\"0\"\n   crs:RedHue=\"0\"\n   crs:RedSaturation=\"0\"\n   crs:GreenHue=\"0\"\n   crs:GreenSaturation=\"0\"\n   crs:BlueHue=\"0\"\n   crs:BlueSaturation=\"0\"\n   crs:Vibrance=\"0\"\n   crs:HueAdjustmentRed=\"0\"\n   crs:HueAdjustmentOrange=\"0\"\n   crs:HueAdjustmentYellow=\"0\"\n   crs:HueAdjustmentGreen=\"0\"\n   crs:HueAdjustmentAqua=\"0\"\n   crs:HueAdjustmentBlue=\"0\"\n   crs:HueAdjustmentPurple=\"0\"\n   crs:HueAdjustmentMagenta=\"0\"\n   crs:SaturationAdjustmentRed=\"0\"\n   crs:SaturationAdjustmentOrange=\"0\"\n   crs:SaturationAdjustmentYellow=\"0\"\n   crs:SaturationAdjustmentGreen=\"0\"\n   crs:SaturationAdjustmentAqua=\"0\"\n   crs:SaturationAdjustmentBlue=\"0\"\n   crs:SaturationAdjustmentPurple=\"0\"\n   crs:SaturationAdjustmentMagenta=\"0\"\n   crs:LuminanceAdjustmentRed=\"0\"\n   crs:LuminanceAdjustmentOrange=\"0\"\n   crs:LuminanceAdjustmentYellow=\"0\"\n   crs:LuminanceAdjustmentGreen=\"0\"\n   crs:LuminanceAdjustmentAqua=\"0\"\n   crs:LuminanceAdjustmentBlue=\"0\"\n   crs:LuminanceAdjustmentPurple=\"0\"\n   crs:LuminanceAdjustmentMagenta=\"0\"\n   crs:SplitToningShadowHue=\"0\"\n   crs:SplitToningShadowSaturation=\"0\"\n   crs:SplitToningHighlightHue=\"0\"\n   crs:SplitToningHighlightSaturation=\"0\"\n   crs:SplitToningBalance=\"0\"\n   crs:ParametricShadows=\"0\"\n   crs:ParametricDarks=\"0\"\n   crs:ParametricLights=\"0\"\n   crs:ParametricHighlights=\"0\"\n   crs:ParametricShadowSplit=\"25\"\n   crs:ParametricMidtoneSplit=\"50\"\n   crs:ParametricHighlightSplit=\"75\"\n   crs:SharpenRadius=\"+1.0\"\n   crs:SharpenDetail=\"25\"\n   crs:SharpenEdgeMasking=\"0\"\n   crs:PostCropVignetteAmount=\"0\"\n   crs:GrainAmount=\"0\"\n   crs:LensProfileEnable=\"0\"\n   crs:LensManualDistortionAmount=\"0\"\n   crs:PerspectiveVertical=\"0\"\n   crs:PerspectiveHorizontal=\"0\"\n   crs:PerspectiveRotate=\"0.0\"\n   crs:PerspectiveScale=\"100\"\n   crs:PerspectiveAspect=\"0\"\n   crs:PerspectiveUpright=\"0\"\n   crs:PerspectiveX=\"0.00\"\n   crs:PerspectiveY=\"0.00\"\n   crs:AutoLateralCA=\"0\"\n   crs:Exposure2012=\"0.00\"\n   crs:Contrast2012=\"0\"\n   crs:Highlights2012=\"0\"\n   crs:Shadows2012=\"0\"\n   crs:Whites2012=\"0\"\n   crs:Blacks2012=\"0\"\n   crs:Clarity2012=\"0\"\n   crs:DefringePurpleAmount=\"0\"\n   crs:DefringePurpleHueLo=\"30\"\n   crs:DefringePurpleHueHi=\"70\"\n   crs:DefringeGreenAmount=\"0\"\n   crs:DefringeGreenHueLo=\"40\"\n   crs:DefringeGreenHueHi=\"60\"\n   crs:Dehaze=\"0\"\n   crs:Texture=\"0\"\n   crs:ToneMapStrength=\"0\"\n   crs:ConvertToGrayscale=\"False\"\n   crs:OverrideLookVignette=\"False\"\n   crs:ToneCurveName=\"Linear\"\n   crs:ToneCurveName2012=\"Linear\"\n   crs:CameraProfile=\"Embedded\"\n   crs:CameraProfileDigest=\"7C46B99B01D4938E45DB29DB42B23C19\"\n   crs:LensProfileSetup=\"LensDefaults\"\n   crs:UprightVersion=\"151388160\"\n   crs:UprightCenterMode=\"0\"\n   crs:UprightCenterNormX=\"0.5\"\n   crs:UprightCenterNormY=\"0.5\"\n   crs:UprightFocalMode=\"0\"\n   crs:UprightFocalLength35mm=\"35\"\n   crs:UprightPreview=\"False\"\n   crs:UprightTransformCount=\"6\"\n   crs:UprightFourSegmentsCount=\"0\"\n   crs:HasSettings=\"True\"\n   crs:AlreadyApplied=\"False\">\n   <crs:ToneCurve>\n    <rdf:Seq>\n     <rdf:li>0, 0</rdf:li>\n     <rdf:li>255, 255</rdf:li>\n    </rdf:Seq>\n   </crs:ToneCurve>\n   <crs:ToneCurveRed>\n    <rdf:Seq>\n     <rdf:li>0, 0</rdf:li>\n     <rdf:li>255, 255</rdf:li>\n    </rdf:Seq>\n   </crs:ToneCurveRed>\n   <crs:ToneCurveGreen>\n    <rdf:Seq>\n     <rdf:li>0, 0</rdf:li>\n     <rdf:li>255, 255</rdf:li>\n    </rdf:Seq>\n   </crs:ToneCurveGreen>\n   <crs:ToneCurveBlue>\n    <rdf:Seq>\n     <rdf:li>0, 0</rdf:li>\n     <rdf:li>255, 255</rdf:li>\n    </rdf:Seq>\n   </crs:ToneCurveBlue>\n   <crs:ToneCurvePV2012>\n    <rdf:Seq>\n     <rdf:li>0, 0</rdf:li>\n     <rdf:li>255, 255</rdf:li>\n    </rdf:Seq>\n   </crs:ToneCurvePV2012>\n   <crs:ToneCurvePV2012Red>\n    <rdf:Seq>\n     <rdf:li>0, 0</rdf:li>\n     <rdf:li>255, 255</rdf:li>\n    </rdf:Seq>\n   </crs:ToneCurvePV2012Red>\n   <crs:ToneCurvePV2012Green>\n    <rdf:Seq>\n     <rdf:li>0, 0</rdf:li>\n     <rdf:li>255, 255</rdf:li>\n    </rdf:Seq>\n   </crs:ToneCurvePV2012Green>\n   <crs:ToneCurvePV2012Blue>\n    <rdf:Seq>\n     <rdf:li>0, 0</rdf:li>\n     <rdf:li>255, 255</rdf:li>\n    </rdf:Seq>\n   </crs:ToneCurvePV2012Blue>\n   <crs:Look\n    crs:Name=\"\"/>\n  </rdf:Description>\n </rdf:RDF>\n</x:xmpmeta>\n"
+        },
+        "userUpdated": "2020-08-30T09:20:08.160Z",
+        "xmp": {
+            "tiff": {
+                "Orientation": "bottom right",
+                "Make": "Apple",
+                "Model": "iPhone XS"
+            },
+            "exif": {
+                "ApertureValue": [
+                    1695994,
+                    1000000
+                ],
+                "FNumber": [
+                    18,
+                    10
+                ],
+                "FocalLength": [
+                    17,
+                    4
+                ],
+                "DateTimeOriginal": "2019-08-27T15:50:17.839",
+                "FlashRedEyeMode": false,
+                "ExposureTime": [
+                    1,
+                    1600
+                ],
+                "FlashFired": false,
+                "MeteringMode": "pattern",
+                "FocalLengthIn35mmFilm": 26,
+                "ExposureProgram": "normal program",
+                "FlashReturn": "no strobe return detection",
+                "ISOSpeedRatings": 25,
+                "ShutterSpeedValue": [
+                    10643856,
+                    1000000
+                ],
+                "FlashMode": "compulsory flash suppression",
+                "BrightnessValue": [
+                    75235,
+                    7529
+                ],
+                "FlashFunction": false,
+                "ExposureBiasValue": [
+                    0,
+                    1
+                ]
+            },
+            "aux": {
+                "Lens": "iPhone XS back dual camera 4.25mm f/1.8"
+            },
+            "xmp": {
+                "CreatorTool": "12.4.1",
+                "CreateDate": "2019-08-27T15:50:17.839",
+                "ModifyDate": "2019-08-27T15:50:17"
+            },
+            "photoshop": {
+                "DateCreated": "2019-08-27T15:50:17.839"
+            },
+            "dc": {
+                "subject": {
+                    "hiking": true
+                }
+            }
+        },
+        "captureDate": "2019-08-27T15:50:17.839",
+        "location": {
+            "longitude": 121.919022,
+            "latitude": 25.126694,
+            "altitude": 76.8,
+            "direction": 143.62,
+            "reference": "T",
+            "state": "New Taipei City",
+            "country": "Taiwan",
+            "isoCountryCode": "tw"
+        },
+        "importSource": {
+            "originalHeight": 3024,
+            "importedOnDevice": "Michal’s Mac mini",
+            "importTimestamp": "2020-01-13T03:20:05Z",
+            "contentType": "image/heic",
+            "sha256": "653fb0d4d2de5727b4d444d16ae09aafe5ac4320cb01441087ce5299c52e93fd",
+            "fileSize": 3224653,
+            "importedBy": "0a77c9cc22534a4c43339a89b56aeb4b",
+            "fileName": "IMG_5573.heic",
+            "originalWidth": 4032
+        },
+        "userCreated": "2020-01-13T03:20:05.897Z"
+    }
+}

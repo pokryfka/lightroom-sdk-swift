@@ -1,0 +1,106 @@
+{
+  "base": "<base_url>",
+  "resources": [
+    {
+      "id": "<asset_id>",
+      "type": "asset",
+      "subtype": "image",
+      "created": "<created_date>",
+      "updated": "<updated_date>",
+      "links": {
+        "self": {
+          "href": "assets/<asset_id>"
+        },
+        "/rels/rendition_type/<rendition_type>": {
+          "href": "assets/<asset_id>/renditions/<rendition_type>"
+        }
+      },
+      "payload": {
+        "captureDate": "<image_capture_date>",
+        "importSource": {
+          "fileName": "<file_name>",
+          "fileSize": 11,
+          "originalWidth": 12,
+          "originalHeight": 13,
+          "sha256": "<image_sha256>",
+          "importedOnDevice": "<import_device_name>",
+          "importedBy": "<import_account_id>",
+          "importTimestamp": "<import_time>"
+        },
+        "<key>": "<value>",
+        "develop": {
+          "<dev_key>": "<dev_value>"
+        }
+      }
+    },
+    {
+      "id": "<asset_id>",
+      "type": "asset",
+      "subtype": "video",
+      "created": "<created_date>",
+      "updated": "<updated_date>",
+      "links": {
+        "self": {
+          "href": "assets/<asset_id>"
+        },
+        "/rels/rendition_type/<rendition_type>": {
+          "href": "assets/<asset_id>/renditions/<rendition_type>"
+        }
+      },
+      "unshareable": "<unshareable>",
+      "payload": {
+        "captureDate": "<image_capture_date>",
+        "importSource": {
+          "fileName": "<file_name>",
+          "fileSize": 21,
+          "originalWidth": 22,
+          "originalHeight": 23,
+          "sha256": "<image_sha256>",
+          "importedOnDevice": "<import_device_name>",
+          "importedBy": "<import_account_id>",
+          "importTimestamp": "<import_time>"
+        },
+        "video": {
+          "frameRate": [
+            "<video_frame_rate_numerator>",
+            "<video_frame_rate_denominator>"
+          ],
+          "duration": [
+            "<video_duration_numerator>",
+            "<video_duration_denominator>"
+          ],
+          "displayAspectRatio": [
+            "<video_aspect_ratio_numerator>",
+            "<video_aspect_ratio_denominator>"
+          ],
+          "storageWidth": "<video_storage_width>",
+          "storageHeight": "<video_storage_height>"
+        },
+        "<key>": "<value>",
+        "develop": {
+          "<dev_key>": "<dev_value>"
+        }
+      },
+      "fingerprint": {
+        "pass": "<pass>",
+        "file_href": "assets/<asset_id>/revisions/<revision_id>/renditions/<rendition_id>",
+        "copyright": {
+          "title": "<copyrighted_title>",
+          "owner": "<copyrighted_owner>"
+        }
+      }
+    }
+  ],
+  "links": {
+    "prev": {
+      "href": "albums/<album_id>/assets?captured_after=<first_captured_date>"
+    },
+    "next": {
+      "href": "albums/<album_id>/assets?captured_before=<last_captured_date>"
+    },
+    "/rels/asset": {
+      "href": "assets/{asset_id}",
+      "templated": true
+    }
+  }
+}

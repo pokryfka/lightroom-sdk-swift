@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "<param_name>": [
+      "not allowed with asset_ids parameter"
+    ]
+  },
+  "code": 1005,
+  "description": "Input Validation Error"
+}

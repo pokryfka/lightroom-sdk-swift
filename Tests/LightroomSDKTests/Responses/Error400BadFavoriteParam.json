@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "favorite": [
+      "favorite query param can only be true. favorite=false not supported"
+    ]
+  },
+  "code": 1005,
+  "description": "Input Validation Error"
+}

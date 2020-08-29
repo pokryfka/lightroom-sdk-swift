@@ -1,0 +1,65 @@
+{
+  "created": "2019-07-02T15:16:13.556610Z",
+  "updated": "2019-07-02T15:26:42.838366Z",
+  "base": "https://lr.adobe.io/v2/",
+  "id": "bf7337d9355c41b7875c9392f918362a",
+  "type": "catalog",
+  "subtype": "lightroom",
+  "payload": {
+    "userCreated": "2019-07-02T15:38:14Z",
+    "userUpdated": "2019-08-16T16:05:13Z",
+    "name": "Lightroom Classic Catalog Name",
+    "presets": {
+      "favorites": {
+        "09E4A533BEFC4AC582FCF1EF953EB150": true,
+        "30E266DB24AE09B97DC3DD687AC298B1": false,
+        "5C9AF6F007B96EF1E0DED43E77BE87C3": true
+      }
+    },
+    "profiles": {
+      "favorites": {
+        "53A4A533BAFB4AB582FBF1AF353AB155": true,
+        "35A266DB24AA53B37DB3DD687AB238B1": true,
+        "5B3AF6F557B36AF1A5DAD43A77BA87B3": false
+      }
+    },
+    "settings": {
+      "universal": {
+        "connections": {
+          "connection_api_key": {
+            "created": "2019-07-02T15:26:42.838366Z"
+          }
+        }
+      },
+      "desktop": {
+        "desktop_key": "desktop_setting"
+      },
+      "web": {
+        "web_key": "web_setting"
+      },
+      "mobile": {
+        "mobile_key": "mobile_setting"
+      },
+      "photosdk": {
+        "sdk_key": "sdk_setting"
+      }
+    }
+  },
+  "revision_ids": [
+    "9a91927e",
+    "d61b7077"
+  ],
+  "links": {
+    "self": {
+      "href": "catalogs/bf7337d9355c41b7875c9392f918362a"
+    },
+    "/rels/subtyped_albums": {
+      "href": "catalogs/bf7337d9355c41b7875c9392f918362a/albums?subtype={subtype}",
+      "templated": true
+    },
+    "/rels/subtyped_assets": {
+      "href": "catalogs/bf7337d9355c41b7875c9392f918362a/assets?subtype={subtype}",
+      "templated": true
+    }
+  }
+}

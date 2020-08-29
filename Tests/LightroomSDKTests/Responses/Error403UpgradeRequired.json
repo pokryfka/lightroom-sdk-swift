@@ -1,0 +1,9 @@
+{
+  "code": 4999,
+  "description": "Upgrade required",
+  "links": {
+    "/rels/client_app": {
+      "href": "<app_url> (Link to the where to find a new version of the client application)"
+    }
+  }
+}
