@@ -82,6 +82,7 @@ final class DecodingTests: XCTestCase {
         XCTAssertEqual(result.base, "string")
         XCTAssertEqual(result.resources.count, 1)
         let album = try XCTUnwrap(result.resources.first)
+        XCTAssertNotNil(album.base)
         XCTAssertEqual(album.id.rawValue, "string")
         XCTAssertEqual(album.type, "album")
         XCTAssertEqual(album.created.rawValue, "string")
