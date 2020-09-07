@@ -1,0 +1,43 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  test-macos:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: OS name
+      run: uname -a
+    - name: Swift version
+      run: swift --version
+    - name: Build
+      run: swift build
+    - name: Run tests
+      run: swift test
+
+  test-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        images:
+        - swift:5.2-amazonlinux2
+    container:
+      image: ${{ matrix.images }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: OS name
+      run: uname -a
+    - name: Swift version
+      run: swift --version
+    - name: Build
+      run: swift build
+    - name: Run tests
+      run: swift test --enable-test-discovery
