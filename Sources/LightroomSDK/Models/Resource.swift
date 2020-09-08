@@ -119,11 +119,13 @@ extension Lightroom.Resources {
         return "\(base)\(link.href)"
     }
 
+    @available(*, deprecated, message: "use prevURL")
     var prevRequest: AdobeIOClient.Request? {
         guard let url = prevURL else { return nil }
         return .init(method: .GET, url: url)
     }
 
+    @available(*, deprecated, message: "use nextURL")
     var nextRequest: AdobeIOClient.Request? {
         guard let url = nextURL else { return nil }
         return .init(method: .GET, url: url)

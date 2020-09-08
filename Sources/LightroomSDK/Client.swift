@@ -140,6 +140,24 @@ public class AdobeIOClient {
     }
 }
 
+extension AdobeIOClient {
+    public func get(_ url: String) -> NIO.EventLoopFuture<Response> {
+        execute(Request(method: .GET, url: url))
+    }
+
+    public func get<T: Decodable>(_ url: String) -> NIO.EventLoopFuture<T> {
+        execute(Request(method: .GET, url: url))
+    }
+
+    public func get(_ url: String, callback: @escaping (Result<Response, Error>) -> Void) {
+        execute(Request(method: .GET, url: url)).whenComplete(callback)
+    }
+
+    public func get<T: Decodable>(_ url: String, callback: @escaping (Result<T, Error>) -> Void) {
+        execute(Request(method: .GET, url: url)).whenComplete(callback)
+    }
+}
+
 internal extension AdobeIOClient {
     struct ErrorResponse: Decodable {
         let code: UInt

@@ -159,9 +159,9 @@ final class APITests: XCTestCase {
                 print("First page resources count: \(response.resources.count)")
                 XCTAssertNil(response.prevURL)
                 // assume there is next page
-                let request = try! XCTUnwrap(response.nextRequest)
-                print("nextURL: \(request.url)")
-                return client.execute(request)
+                let nextURL = try! XCTUnwrap(response.nextURL)
+                print("nextURL: \(nextURL)")
+                return client.get(nextURL)
             }
             .map { response in
                 print("Second page resources.count: \(response.resources.count)")
