@@ -102,15 +102,15 @@ final class DecodingTests: XCTestCase {
         XCTAssertEqual(result.links?.count, 2)
         XCTAssertEqual(result.prevURL, "<base_url>albums/<album_id>/assets?captured_after=<first_captured_date>")
         XCTAssertEqual(result.nextURL, "<base_url>albums/<album_id>/assets?captured_before=<last_captured_date>")
-        XCTAssertEqual(result.prevRequest?.url, result.prevURL)
-        XCTAssertEqual(result.nextRequest?.url, result.nextURL)
         let albumAsset = try XCTUnwrap(result.resources.first)
         XCTAssertEqual(albumAsset.id.rawValue, "<album_asset_id>")
         XCTAssertEqual(albumAsset.type, "album_asset")
         XCTAssertEqual(albumAsset.created.rawValue, "<created_date>")
         XCTAssertEqual(albumAsset.updated.rawValue, "<updated_date>")
-        // TODO: check revision_ids
-        // TODO: check links
+        XCTAssertEqual(albumAsset.revisionIDs?.map(\.rawValue),
+                       ["<album_asset_revision_id1>", "<album_asset_revision_id2>", "<album_asset_revision_id3>"])
+        XCTAssertEqual(albumAsset.assetURL, "<base_url>assets/<asset_id>")
+        XCTAssertEqual(albumAsset.assetRenditionURL(.longEdge1280), "<base_url>assets/<asset_id>/renditions/1280")
         let asset = try XCTUnwrap(albumAsset.asset)
         XCTAssertEqual(asset.id.rawValue, "<asset_id>")
         // TODO: the actual payload is different then in example

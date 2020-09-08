@@ -15,6 +15,7 @@ extension Lightroom {
     public typealias Album = Resource<AlbumPayload>
     public typealias Albums = Resources<AlbumPayload>
     public typealias AlbumRef = ResourceRef<AlbumPayload>
+    public typealias AlbumAsset = Resource<AlbumAssetPayload>
     public typealias AlbumAssets = Resources<AlbumAssetPayload>
 
     public struct AlbumPayload: Decodable {
@@ -23,11 +24,26 @@ extension Lightroom {
         public let name: String
         public let cover: AssetRef?
         public let parent: AlbumRef?
-        // TODO: publishedInfo
     }
 
     public struct AlbumAssetPayload: Decodable {
         public let userCreated: UTCDateTime?
         public let userUpdated: UTCDateTime?
+    }
+}
+
+extension Lightroom.AlbumAsset {
+    var assetLink: Lightroom.Link? {
+        asset?.links?["self"]
+    }
+
+    var assetURL: String? {
+        guard let base = base, let link = assetLink else { return nil }
+        return "\(base)\(link.href)"
+    }
+
+    func assetRenditionURL(_ renditionType: Lightroom.RenditionType) -> String? {
+        guard let base = base, let link = assetLink else { return nil }
+        return "\(base)\(link.href)/renditions/\(renditionType.rawValue)"
     }
 }
