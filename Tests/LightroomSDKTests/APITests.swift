@@ -115,8 +115,8 @@ final class APITests: XCTestCase {
             switch result {
             case let .failure(error):
                 XCTFail("Failed with error: \(error)")
-            case let .success(result):
-                print("Result: \(result)")
+            case let .success(response):
+                print("Response: \(response)")
             }
             exp.fulfill()
         }
@@ -191,12 +191,9 @@ final class APITests: XCTestCase {
             }
             .flatMapThrowing { ($0.0, try XCTUnwrap($0.1.resources.first)) }
             .flatMap { (catalogId, asset) -> NIO.EventLoopFuture<AdobeIOClient.Response> in
-//                client.assetRendition(catalogId: catalogId, assetId: asset.id, rentitionType: .thumbnail2x)
-                let request = AdobeIOClient.Request(.assetRendition(catalogId: catalogId,
-                                                                    assetId: asset.id,
-                                                                    renditionType: .thumbnail2x))
-                self.addAttachemnt(string: request.url, name: "URL")
-                return client.execute(request)
+                let url = Lightroom.API.assetRendition(catalogId: catalogId, assetId: asset.id, renditionType: .thumbnail2x).url
+                self.addAttachemnt(string: url, name: "URL")
+                return client.get(url)
             }
             .always { result in
                 switch result {

@@ -12,19 +12,17 @@
 //===----------------------------------------------------------------------===//
 
 @testable import LightroomSDK
+import NIO
 import XCTest
 
 final class ClientTests: XCTestCase {
     func testShutdown() throws {
-        let apiKey: String = UUID().uuidString
-        let client = AdobeIOClient(apiKey: apiKey)
+        let client = AdobeIOClient(apiKey: UUID().uuidString)
         XCTAssertNoThrow(try client.syncShutdown())
     }
 
     func testNoAccessToken() throws {
-        let apiKey: String = UUID().uuidString
-
-        let client = AdobeIOClient(apiKey: apiKey)
+        let client = AdobeIOClient(apiKey: UUID().uuidString)
         defer {
             XCTAssertNoThrow(try client.syncShutdown())
         }
@@ -46,5 +44,47 @@ final class ClientTests: XCTestCase {
         }
 
         wait(for: [exp], timeout: 1)
+    }
+
+    func testGetingJSON() throws {
+        let client = AdobeIOClient(apiKey: UUID().uuidString)
+        client.accessToken = UUID().uuidString
+        defer {
+            XCTAssertNoThrow(try client.syncShutdown())
+        }
+
+        struct HTTPBinResponse: Decodable {
+            let args: [String: String]
+            let headers: [String: String]
+            let origin: String
+            let url: String
+        }
+
+        let url = "https://httpbin.org/get?limit=1"
+        try client.get(url, fixJSONContent: false)
+            .flatMapThrowing { (response: HTTPBinResponse) in
+                XCTAssertEqual(response.url, url)
+                XCTAssertEqual(response.args["limit"], "1")
+            }
+            .map { _ in }
+            .wait()
+    }
+
+    func testGetingImage() throws {
+        let client = AdobeIOClient(apiKey: UUID().uuidString)
+        client.accessToken = UUID().uuidString
+        defer {
+            XCTAssertNoThrow(try client.syncShutdown())
+        }
+
+        let url = "https://httpbin.org/image/jpeg"
+        try client.get(url)
+            .flatMapThrowing { response in
+                #if os(macOS)
+                    _ = try XCTUnwrap(NSImage(data: Data(response.bytes)))
+                #endif
+            }
+            .map { _ in }
+            .wait()
     }
 }

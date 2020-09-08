@@ -45,7 +45,7 @@ public class AdobeIOClient {
         case requestError(Error)
         case executeError(Error)
         case noBody
-        case responseError(code: UInt, description: String, errors: [String: [String]]?)
+        case responseError(code: UInt, description: String, errors: [String: [String]]? = nil)
         case decodingError(Error)
     }
 
@@ -79,7 +79,7 @@ public class AdobeIOClient {
         try httpClient.syncShutdown()
     }
 
-    public func execute(_ request: Request) -> NIO.EventLoopFuture<Response> {
+    public func execute(_ request: Request, fixJSONContent: Bool = true) -> NIO.EventLoopFuture<Response> {
         guard
             let accessToken = accessToken
         else {
@@ -101,60 +101,55 @@ public class AdobeIOClient {
 
         return httpClient.execute(request: httpRequest)
             .flatMapErrorThrowing { throw ClientError.executeError($0) }
+            .flatMapThrowing { try Response($0, fixJSONContent: fixJSONContent) }
             .flatMapThrowing { response in
-                guard var body = response.body else { throw ClientError.noBody }
-                let bytes = body.readBytes(length: body.readableBytes) ?? [UInt8]()
-                guard response.status.code >= 200, response.status.code < 300 else {
-                    // TODO: responses start with "while (1) {}", see https://github.com/AdobeDocs/lightroom-partner-apis/issues/93
-                    if let errorResponse = try? self.jsonDecoder.decode(ErrorResponse.self, from: bytes.dropFirst(12)) {
+                guard response.statusCode >= 200, response.statusCode < 300 else {
+                    if let errorResponse = try? self.jsonDecoder.decode(ErrorResponse.self, from: response.bytes) {
                         throw ClientError.responseError(code: errorResponse.code,
                                                         description: errorResponse.description,
                                                         errors: errorResponse.errors)
                     } else {
-                        throw ClientError.responseError(code: response.status.code,
-                                                        description: "Unknown", errors: nil)
+                        throw ClientError.responseError(code: response.statusCode, description: "Unknown")
                     }
                 }
-                return Response(statusCode: response.status.code, bytes: bytes)
+                return response
             }
     }
 
-    public func execute<T: Decodable>(_ request: Request) -> NIO.EventLoopFuture<T> {
-        execute(request).flatMapThrowing { response in
-            // TODO: responses start with "while (1) {}", see https://github.com/AdobeDocs/lightroom-partner-apis/issues/93
-            let bytes = response.bytes.dropFirst(12)
+    public func execute<T: Decodable>(_ request: Request, fixJSONContent: Bool = true) -> NIO.EventLoopFuture<T> {
+        execute(request, fixJSONContent: fixJSONContent).flatMapThrowing { response in
             do {
-                return try self.jsonDecoder.decode(T.self, from: bytes)
+                return try self.jsonDecoder.decode(T.self, from: response.bytes)
             } catch {
                 throw ClientError.decodingError(error)
             }
         }
     }
 
-    public func execute(_ request: Request, callback: @escaping (Result<Response, Error>) -> Void) {
-        execute(request).whenComplete(callback)
+    public func execute(_ request: Request, fixJSONContent: Bool = true, callback: @escaping (Result<Response, Error>) -> Void) {
+        execute(request, fixJSONContent: fixJSONContent).whenComplete(callback)
     }
 
-    public func execute<T: Decodable>(_ request: Request, callback: @escaping (Result<T, Error>) -> Void) {
-        execute(request).whenComplete(callback)
+    public func execute<T: Decodable>(_ request: Request, fixJSONContent: Bool = true, callback: @escaping (Result<T, Error>) -> Void) {
+        execute(request, fixJSONContent: fixJSONContent).whenComplete(callback)
     }
 }
 
 extension AdobeIOClient {
-    public func get(_ url: String) -> NIO.EventLoopFuture<Response> {
-        execute(Request(method: .GET, url: url))
+    public func get(_ url: String, fixJSONContent: Bool = true) -> NIO.EventLoopFuture<Response> {
+        execute(Request(method: .GET, url: url), fixJSONContent: fixJSONContent)
     }
 
-    public func get<T: Decodable>(_ url: String) -> NIO.EventLoopFuture<T> {
-        execute(Request(method: .GET, url: url))
+    public func get<T: Decodable>(_ url: String, fixJSONContent: Bool = true) -> NIO.EventLoopFuture<T> {
+        execute(Request(method: .GET, url: url), fixJSONContent: fixJSONContent)
     }
 
-    public func get(_ url: String, callback: @escaping (Result<Response, Error>) -> Void) {
-        execute(Request(method: .GET, url: url)).whenComplete(callback)
+    public func get(_ url: String, fixJSONContent: Bool = true, callback: @escaping (Result<Response, Error>) -> Void) {
+        execute(Request(method: .GET, url: url), fixJSONContent: fixJSONContent).whenComplete(callback)
     }
 
-    public func get<T: Decodable>(_ url: String, callback: @escaping (Result<T, Error>) -> Void) {
-        execute(Request(method: .GET, url: url)).whenComplete(callback)
+    public func get<T: Decodable>(_ url: String, fixJSONContent: Bool = true, callback: @escaping (Result<T, Error>) -> Void) {
+        execute(Request(method: .GET, url: url), fixJSONContent: fixJSONContent).whenComplete(callback)
     }
 }
 
@@ -196,5 +191,17 @@ private extension NIOHTTP1.HTTPMethod {
         case .GET:
             self = .GET
         }
+    }
+}
+
+private extension AdobeIOClient.Response {
+    init(_ response: HTTPClient.Response, fixJSONContent: Bool = true) throws {
+        guard var body = response.body else { throw AdobeIOClient.ClientError.noBody }
+        statusCode = response.status.code
+        // see https://www.adobe.io/apis/creativecloud/lightroom/docs.html#!usage/calling.md
+        if fixJSONContent && response.headers.first(name: "Content-Type") == "application/json" {
+            _ = body.readBytes(length: 12)
+        }
+        bytes = body.readBytes(length: body.readableBytes) ?? [UInt8]()
     }
 }
