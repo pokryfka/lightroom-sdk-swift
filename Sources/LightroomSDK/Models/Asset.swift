@@ -61,6 +61,22 @@ extension Lightroom {
     }
 }
 
+extension Lightroom.Asset {
+    var assetLink: Lightroom.Link? {
+        links?["self"]
+    }
+
+    var assetURL: String? {
+        guard let base = base, let link = assetLink else { return nil }
+        return "\(base)\(link.href)"
+    }
+
+    func assetRenditionURL(_ renditionType: Lightroom.RenditionType) -> String? {
+        guard let base = base, let link = assetLink else { return nil }
+        return "\(base)\(link.href)/renditions/\(renditionType.rawValue)"
+    }
+}
+
 extension Lightroom.AssetPayload {
     // see https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata
     public struct XMP: Decodable {
