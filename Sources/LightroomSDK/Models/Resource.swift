@@ -102,33 +102,21 @@ extension Lightroom {
 }
 
 extension Lightroom.Resources {
-    var prevLink: Lightroom.Link? {
+    public var prevLink: Lightroom.Link? {
         links?["prev"]
     }
 
-    var nextLink: Lightroom.Link? {
+    public var nextLink: Lightroom.Link? {
         links?["next"]
     }
 
-    var prevURL: String? {
+    public var prevURL: String? {
         guard let link = prevLink else { return nil }
         return "\(base)\(link.href)"
     }
 
-    var nextURL: String? {
+    public var nextURL: String? {
         guard let link = nextLink else { return nil }
         return "\(base)\(link.href)"
-    }
-
-    @available(*, deprecated, message: "use prevURL")
-    var prevRequest: AdobeIOClient.Request? {
-        guard let url = prevURL else { return nil }
-        return .init(method: .GET, url: url)
-    }
-
-    @available(*, deprecated, message: "use nextURL")
-    var nextRequest: AdobeIOClient.Request? {
-        guard let url = nextURL else { return nil }
-        return .init(method: .GET, url: url)
     }
 }

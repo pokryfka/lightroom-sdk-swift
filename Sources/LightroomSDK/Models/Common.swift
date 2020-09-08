@@ -33,8 +33,8 @@ extension Lightroom {
     }
 
     public struct Link: Decodable {
-        let href: String
-        let templated: Bool?
+        public let href: String
+        public let templated: Bool?
     }
 
     public struct FileSize: RawRepresentable, Decodable {

@@ -25,14 +25,14 @@ extension Lightroom {
 
     public struct AssetPayload: Decodable {
         public struct ImportSource: Decodable {
-            let fileName: String
-            let fileSize: FileSize
-            let originalWidth: UInt
-            let originalHeight: UInt
-            let sha256: SHA256
-            let importedOnDevice: String
-            let importedBy: Account.UUID
-            let importTimestamp: UTCDateTime
+            public let fileName: String
+            public let fileSize: FileSize
+            public let originalWidth: UInt
+            public let originalHeight: UInt
+            public let sha256: SHA256
+            public let importedOnDevice: String
+            public let importedBy: Account.UUID
+            public let importTimestamp: UTCDateTime
         }
 
         public struct Video: Decodable {
@@ -40,14 +40,14 @@ extension Lightroom {
         }
 
         public struct Location: Decodable {
-            let longitude: Float
-            let latitude: Float
-            let altitude: Float?
-            let direction: Float?
-            let reference: String?
-            let state: String?
-            let country: String?
-            let isoCountryCode: String?
+            public let longitude: Float
+            public let latitude: Float
+            public let altitude: Float?
+            public let direction: Float?
+            public let reference: String?
+            public let state: String?
+            public let country: String?
+            public let isoCountryCode: String?
         }
 
         public let captureDate: UTCDateTime
@@ -62,16 +62,16 @@ extension Lightroom {
 }
 
 extension Lightroom.Asset {
-    var assetLink: Lightroom.Link? {
+    public var assetLink: Lightroom.Link? {
         links?["self"]
     }
 
-    var assetURL: String? {
+    public var assetURL: String? {
         guard let base = base, let link = assetLink else { return nil }
         return "\(base)\(link.href)"
     }
 
-    func assetRenditionURL(_ renditionType: Lightroom.RenditionType) -> String? {
+    public func assetRenditionURL(_ renditionType: Lightroom.RenditionType) -> String? {
         guard let base = base, let link = assetLink else { return nil }
         return "\(base)\(link.href)/renditions/\(renditionType.rawValue)"
     }

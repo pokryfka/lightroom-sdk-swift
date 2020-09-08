@@ -42,16 +42,16 @@ extension Lightroom {
 }
 
 extension Lightroom.AlbumAsset {
-    var assetLink: Lightroom.Link? {
+    public var assetLink: Lightroom.Link? {
         asset?.links?["self"]
     }
 
-    var assetURL: String? {
+    public var assetURL: String? {
         guard let base = base, let link = assetLink else { return nil }
         return "\(base)\(link.href)"
     }
 
-    func assetRenditionURL(_ renditionType: Lightroom.RenditionType) -> String? {
+    public func assetRenditionURL(_ renditionType: Lightroom.RenditionType) -> String? {
         guard let base = base, let link = assetLink else { return nil }
         return "\(base)\(link.href)/renditions/\(renditionType.rawValue)"
     }
