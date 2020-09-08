@@ -29,7 +29,7 @@ extension Lightroom {
             }
         }
 
-        public let base: String?
+        public fileprivate(set) var base: String?
         public let id: UUID
         public let type: String
         public let subtype: String?
@@ -78,6 +78,25 @@ extension Lightroom {
         public let resources: [Resource<Payload>]
         // TODO: (optional) errors
         public let links: [String: Link]?
+
+        enum CodingKeys: String, CodingKey {
+            case base
+            case resources
+            case links
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let base = try container.decode(String.self, forKey: .base)
+            resources = try container.decode([Resource<Payload>].self, forKey: .resources)
+                .map { value in
+                    var value = value
+                    value.base = base
+                    return value
+                }
+            self.base = base
+            links = try container.decodeIfPresent([String: Link].self, forKey: .links)
+        }
     }
 }
 
@@ -100,11 +119,13 @@ extension Lightroom.Resources {
         return "\(base)\(link.href)"
     }
 
+    @available(*, deprecated, message: "use prevURL")
     var prevRequest: AdobeIOClient.Request? {
         guard let url = prevURL else { return nil }
         return .init(method: .GET, url: url)
     }
 
+    @available(*, deprecated, message: "use nextURL")
     var nextRequest: AdobeIOClient.Request? {
         guard let url = nextURL else { return nil }
         return .init(method: .GET, url: url)

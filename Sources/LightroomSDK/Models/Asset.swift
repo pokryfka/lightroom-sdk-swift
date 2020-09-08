@@ -18,16 +18,9 @@ extension Lightroom {
 
     public enum RenditionType: String, Decodable {
         case thumbnail2x
-        case longEdge640
-        case longEdge1280
-        case longEdge2048
-
-        enum CodingKeys: String, CodingKey {
-            case thumbnail2x
-            case longEdge640 = "640"
-            case longEdge1280 = "1280"
-            case longEdge2048 = "2048"
-        }
+        case longEdge640 = "640"
+        case longEdge1280 = "1280"
+        case longEdge2048 = "2048"
     }
 
     public struct AssetPayload: Decodable {
@@ -65,6 +58,22 @@ extension Lightroom {
         public let xmp: XMP?
         public let location: Location?
         // TODO: develop
+    }
+}
+
+extension Lightroom.Asset {
+    var assetLink: Lightroom.Link? {
+        links?["self"]
+    }
+
+    var assetURL: String? {
+        guard let base = base, let link = assetLink else { return nil }
+        return "\(base)\(link.href)"
+    }
+
+    func assetRenditionURL(_ renditionType: Lightroom.RenditionType) -> String? {
+        guard let base = base, let link = assetLink else { return nil }
+        return "\(base)\(link.href)/renditions/\(renditionType.rawValue)"
     }
 }
 

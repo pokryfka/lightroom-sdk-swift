@@ -58,7 +58,8 @@ final class DecodingTests: XCTestCase {
         XCTAssertGreaterThan(result.resources.count, 0)
         XCTAssertEqual(result.prevURL, "<base_url>albums/<album_id>/assets?captured_after=<first_captured_date>")
         XCTAssertEqual(result.nextURL, "<base_url>albums/<album_id>/assets?captured_before=<last_captured_date>")
-        // TODO: impl
+        let asset = try XCTUnwrap(result.resources.first)
+        XCTAssertEqual(asset.id.rawValue, "<asset_id>")
     }
 
     func testDecodingAssetsWithErrorsResponse() throws {
@@ -66,7 +67,8 @@ final class DecodingTests: XCTestCase {
         XCTAssertEqual(result.base, "<base_url>")
         XCTAssertGreaterThan(result.resources.count, 0)
         // TODO: check errors
-        // TODO: impl
+        let asset = try XCTUnwrap(result.resources.first)
+        XCTAssertEqual(asset.id.rawValue, "<asset_id>")
     }
 
     func testDecodingAssetResponse() throws {
@@ -74,7 +76,20 @@ final class DecodingTests: XCTestCase {
         XCTAssertEqual(result.id.rawValue, "<asset_id>")
         XCTAssertEqual(result.type, "asset")
         XCTAssertEqual(result.subtype, "image")
-        // TODO: impl
+        XCTAssertEqual(result.created.rawValue, "<created_date>")
+        XCTAssertEqual(result.updated.rawValue, "<updated_date>")
+        XCTAssertEqual(result.revisionIDs?.map(\.rawValue), ["<revision_id1>", "<revision_id2>", "<revision_id3>"])
+        XCTAssertEqual(result.assetURL, "<base_url>assets/<asset_id>")
+        XCTAssertEqual(result.assetRenditionURL(.longEdge1280), "<base_url>assets/<asset_id>/renditions/1280")
+        XCTAssertEqual(result.payload.captureDate.rawValue, "<image_capture_date>")
+        XCTAssertEqual(result.payload.importSource.fileName, "<file_name>")
+        XCTAssertEqual(result.payload.importSource.fileSize.rawValue, 11)
+        XCTAssertEqual(result.payload.importSource.originalWidth, 12)
+        XCTAssertEqual(result.payload.importSource.originalHeight, 13)
+        XCTAssertEqual(result.payload.importSource.sha256.rawValue, "<image_sha256>")
+        XCTAssertEqual(result.payload.importSource.importedOnDevice, "<import_device_name>")
+        XCTAssertEqual(result.payload.importSource.importedBy.rawValue, "<import_account_id>")
+        XCTAssertEqual(result.payload.importSource.importTimestamp.rawValue, "<import_time>")
     }
 
     func testDecodingAlbumsResponse() throws {
@@ -82,6 +97,7 @@ final class DecodingTests: XCTestCase {
         XCTAssertEqual(result.base, "string")
         XCTAssertEqual(result.resources.count, 1)
         let album = try XCTUnwrap(result.resources.first)
+        XCTAssertNotNil(album.base)
         XCTAssertEqual(album.id.rawValue, "string")
         XCTAssertEqual(album.type, "album")
         XCTAssertEqual(album.created.rawValue, "string")
@@ -101,15 +117,15 @@ final class DecodingTests: XCTestCase {
         XCTAssertEqual(result.links?.count, 2)
         XCTAssertEqual(result.prevURL, "<base_url>albums/<album_id>/assets?captured_after=<first_captured_date>")
         XCTAssertEqual(result.nextURL, "<base_url>albums/<album_id>/assets?captured_before=<last_captured_date>")
-        XCTAssertEqual(result.prevRequest?.url, result.prevURL)
-        XCTAssertEqual(result.nextRequest?.url, result.nextURL)
         let albumAsset = try XCTUnwrap(result.resources.first)
         XCTAssertEqual(albumAsset.id.rawValue, "<album_asset_id>")
         XCTAssertEqual(albumAsset.type, "album_asset")
         XCTAssertEqual(albumAsset.created.rawValue, "<created_date>")
         XCTAssertEqual(albumAsset.updated.rawValue, "<updated_date>")
-        // TODO: check revision_ids
-        // TODO: check links
+        XCTAssertEqual(albumAsset.revisionIDs?.map(\.rawValue),
+                       ["<album_asset_revision_id1>", "<album_asset_revision_id2>", "<album_asset_revision_id3>"])
+        XCTAssertEqual(albumAsset.assetURL, "<base_url>assets/<asset_id>")
+        XCTAssertEqual(albumAsset.assetRenditionURL(.longEdge1280), "<base_url>assets/<asset_id>/renditions/1280")
         let asset = try XCTUnwrap(albumAsset.asset)
         XCTAssertEqual(asset.id.rawValue, "<asset_id>")
         // TODO: the actual payload is different then in example
