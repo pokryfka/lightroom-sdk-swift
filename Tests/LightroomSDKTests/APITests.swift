@@ -228,6 +228,25 @@ final class APITests: XCTestCase {
         XCTAssertFalse(result.resources.isEmpty)
     }
 
+    func testGettingCollectionAlbums() throws {
+        try XCTSkipIf(testApiKey == nil || testAccessToken == nil)
+        let apiKey = try XCTUnwrap(testApiKey)
+        let client = AdobeIOClient(apiKey: apiKey)
+        defer {
+            XCTAssertNoThrow(try client.syncShutdown())
+        }
+        client.accessToken = testAccessToken
+
+        let result = try client.catalog()
+            .flatMap { catalog in
+                client.albums(catalogId: catalog.id, type: .collection, limit: 5)
+            }
+            .wait()
+
+        XCTAssertEqual(result.resources.count, 5)
+        XCTAssertEqual(result.resources.filter { $0.subtype == Lightroom.AlbumType.collection.rawValue }.count, 5)
+    }
+
     func testGettingAlbumAssets() throws {
         try XCTSkipIf(testApiKey == nil || testAccessToken == nil)
         let apiKey = try XCTUnwrap(testApiKey)

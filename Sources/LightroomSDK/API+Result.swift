@@ -63,9 +63,10 @@ extension AdobeIOClient {
     }
 
     public func albums(catalogId: Lightroom.Catalog.UUID,
+                       type: Lightroom.AlbumType? = nil, limit: UInt? = nil,
                        callback: @escaping (Result<Lightroom.Albums, Error>) -> Void)
     {
-        execute(.albums(catalogId: catalogId), callback: callback)
+        execute(.albums(catalogId: catalogId, type: type, limit: limit), callback: callback)
     }
 
     public func album(catalogId: Lightroom.Catalog.UUID, albumId: Lightroom.Album.UUID,

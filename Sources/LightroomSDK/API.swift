@@ -37,7 +37,7 @@ extension Lightroom {
         case assetRendition(catalogId: Catalog.UUID, assetId: Asset.UUID, renditionType: RenditionType)
 
         /// Retrieve albums.
-        case albums(catalogId: Catalog.UUID)
+        case albums(catalogId: Catalog.UUID, type: AlbumType?, limit: UInt?)
 
         /// Get album.
         case album(catalogId: Catalog.UUID, albumId: Album.UUID)
@@ -61,17 +61,29 @@ extension Lightroom {
             case .catalog:
                 return "catalog"
             case let .assets(catalogId):
-                return "catalogs/\(catalogId.rawValue)/assets"
+                return "catalogs/\(catalogId)/assets"
             case let .asset(catalogId, assetId):
-                return "catalogs/\(catalogId.rawValue)/assets/\(assetId.rawValue)"
+                return "catalogs/\(catalogId)/assets/\(assetId)"
             case let .assetRendition(catalogId, assetId, renditionType):
-                return "catalogs/\(catalogId.rawValue)/assets/\(assetId.rawValue)/renditions/\(renditionType.rawValue)"
-            case let .albums(catalogId):
-                return "catalogs/\(catalogId.rawValue)/albums"
+                return "catalogs/\(catalogId)/assets/\(assetId)/renditions/\(renditionType)"
+            case let .albums(catalogId, type, limit):
+                var value = "catalogs/\(catalogId)/albums"
+                // TODO: make it more generic
+                let params = [
+                    "subtype": type?.rawValue,
+                    "limit": limit.flatMap(String.init),
+                ]
+                .compactMapValues { $0 }
+                .map { "\($0.0)=\($0.1)" }
+                .joined(separator: "&")
+                if params.isEmpty == false {
+                    value.append("?\(params)")
+                }
+                return value
             case let .album(catalogId, albumId):
-                return "catalogs/\(catalogId.rawValue)/albums/\(albumId.rawValue)"
+                return "catalogs/\(catalogId)/albums/\(albumId)"
             case let .albumAssets(catalogId, albumId):
-                return "catalogs/\(catalogId.rawValue)/albums/\(albumId.rawValue)/assets)"
+                return "catalogs/\(catalogId)/albums/\(albumId)/assets"
             }
         }
 

@@ -35,8 +35,10 @@ extension AdobeIOClient {
         execute(.assetRendition(catalogId: catalogId, assetId: assetId, renditionType: rentitionType))
     }
 
-    public func albums(catalogId: Lightroom.Catalog.UUID) -> NIO.EventLoopFuture<Lightroom.Albums> {
-        execute(.albums(catalogId: catalogId))
+    public func albums(catalogId: Lightroom.Catalog.UUID,
+                       type: Lightroom.AlbumType? = nil, limit: UInt? = nil) -> NIO.EventLoopFuture<Lightroom.Albums>
+    {
+        execute(.albums(catalogId: catalogId, type: type, limit: limit))
     }
 
     public func album(catalogId: Lightroom.Catalog.UUID, albumId: Lightroom.Album.UUID) -> NIO.EventLoopFuture<Lightroom.Album> {

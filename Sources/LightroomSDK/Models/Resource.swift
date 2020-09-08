@@ -13,8 +13,9 @@
 
 extension Lightroom {
     public struct Resource<Payload: Decodable>: Decodable {
-        public struct UUID: RawRepresentable, Decodable {
+        public struct UUID: RawRepresentable, Decodable, CustomStringConvertible {
             public let rawValue: String
+            public var description: String { rawValue }
 
             public init(rawValue: String) {
                 self.rawValue = rawValue

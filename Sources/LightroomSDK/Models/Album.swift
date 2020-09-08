@@ -18,6 +18,15 @@ extension Lightroom {
     public typealias AlbumAsset = Resource<AlbumAssetPayload>
     public typealias AlbumAssets = Resources<AlbumAssetPayload>
 
+    public enum AlbumType: String, CustomStringConvertible {
+        case project
+        case projectSet = "project_set"
+        case collection
+        case collectionSet = "collection_set"
+
+        public var description: String { rawValue }
+    }
+
     public struct AlbumPayload: Decodable {
         public let userCreated: UTCDateTime
         public let userUpdated: UTCDateTime
