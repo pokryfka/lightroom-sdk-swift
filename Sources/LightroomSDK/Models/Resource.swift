@@ -13,7 +13,7 @@
 
 extension Lightroom {
     public struct Resource<Payload: Decodable>: Decodable {
-        public struct UUID: RawRepresentable, Decodable, CustomStringConvertible {
+        public struct UUID: RawRepresentable, Equatable, Decodable, CustomStringConvertible {
             public let rawValue: String
             public var description: String { rawValue }
 
