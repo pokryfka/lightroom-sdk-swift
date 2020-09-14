@@ -85,7 +85,9 @@ extension Lightroom.AssetPayload {
         }
 
         public struct Dc: Decodable {
-            public let subject: [String: Bool]
+            public let title: String?
+            public let description: String?
+            public let subject: [String: Bool]?
         }
 
         public let exif: Exif?
@@ -96,5 +98,7 @@ extension Lightroom.AssetPayload {
 }
 
 extension Lightroom.AssetPayload {
-    public var keywords: [String]? { xmp?.dc?.subject.filter { $0.value }.map(\.key) }
+    public var title: String? { xmp?.dc?.title }
+    public var caption: String? { xmp?.dc?.description }
+    public var keywords: [String]? { xmp?.dc?.subject?.filter { $0.value }.map(\.key) }
 }
