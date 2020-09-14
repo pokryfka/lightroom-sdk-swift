@@ -14,7 +14,7 @@
 extension Lightroom {
     /// An account is associated with each Adobe customer and contains the personal information and subscription status.
     public struct Account: Decodable {
-        public struct UUID: RawRepresentable, Decodable, CustomStringConvertible {
+        public struct UUID: RawRepresentable, Equatable, Decodable, CustomStringConvertible {
             public let rawValue: String
             public var description: String { rawValue }
 

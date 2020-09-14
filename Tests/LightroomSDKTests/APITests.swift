@@ -18,6 +18,7 @@ import XCTest
 final class APITests: XCTestCase {
     let testApiKey: String? = env("ADOBEIO_API_KEY")
     let testAccessToken: String? = env("ADOBEIO_ACCESS_TOKEN")
+    let testAssetId: String? = env("ASSET_ID")
     let timeout: TimeInterval = 1
 
     func addAttachemnt(string: String, name: String) {
@@ -173,6 +174,31 @@ final class APITests: XCTestCase {
                 return
             }
             .wait()
+    }
+
+    func testGettingAsset() throws {
+        try XCTSkipIf(testApiKey == nil || testAccessToken == nil || testAssetId == nil)
+        let apiKey = try XCTUnwrap(testApiKey)
+        let client = AdobeIOClient(apiKey: apiKey)
+        defer {
+            XCTAssertNoThrow(try client.syncShutdown())
+        }
+        client.accessToken = testAccessToken
+
+        let assetId = Lightroom.Asset.UUID(rawValue: try XCTUnwrap(testAssetId))
+        let asset = try client.catalog()
+            .flatMap { catalog in
+                client.asset(catalogId: catalog.id, assetId: assetId)
+            }
+            .wait()
+
+        XCTAssertEqual(asset.id, assetId)
+        XCTAssertEqual(asset.type, "asset")
+        XCTAssertEqual(asset.subtype, "image")
+        XCTAssertNotNil(asset.payload.location)
+        XCTAssertNotNil(asset.payload.title)
+        XCTAssertNotNil(asset.payload.caption)
+        XCTAssertNotNil(asset.payload.keywords)
     }
 
     func testDownloadingAssetRendition() throws {
