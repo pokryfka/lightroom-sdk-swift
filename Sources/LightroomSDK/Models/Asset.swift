@@ -16,11 +16,13 @@ extension Lightroom {
     public typealias Assets = Resources<AssetPayload>
     public typealias AssetRef = ResourceRef<AssetPayload>
 
-    public enum RenditionType: String, Decodable {
+    public enum RenditionType: String, Decodable, CustomStringConvertible {
         case thumbnail2x
         case longEdge640 = "640"
         case longEdge1280 = "1280"
         case longEdge2048 = "2048"
+
+        public var description: String { rawValue }
     }
 
     public struct AssetPayload: Decodable {
