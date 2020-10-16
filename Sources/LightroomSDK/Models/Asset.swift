@@ -18,9 +18,11 @@ extension Lightroom {
 
     public enum RenditionType: String, Decodable, CustomStringConvertible {
         case thumbnail2x
+        case fullsize
         case longEdge640 = "640"
         case longEdge1280 = "1280"
         case longEdge2048 = "2048"
+        case longEdge2560 = "2560"
 
         public var description: String { rawValue }
     }
