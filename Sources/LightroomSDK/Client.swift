@@ -172,7 +172,7 @@ internal extension AdobeIOClient {
                 code = try container.decode(UInt.self, forKey: .code)
             } catch {
                 if let stringCode = try? container.decode(String.self, forKey: .code),
-                    let intCode = UInt(stringCode)
+                   let intCode = UInt(stringCode)
                 {
                     code = intCode
                 } else {
