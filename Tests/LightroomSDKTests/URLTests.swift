@@ -109,7 +109,15 @@ final class URLTests: XCTestCase {
     func testAlbumAssetsURL() {
         let catalogId = Lightroom.Catalog.UUID(rawValue: UUID().uuidString)
         let albumId = Lightroom.Album.UUID(rawValue: UUID().uuidString)
-        XCTAssertEqual(API.albumAssets(catalogId: catalogId, albumId: albumId).url,
+        XCTAssertEqual(API.albumAssets(catalogId: catalogId, albumId: albumId, limit: nil).url,
                        "https://lr.adobe.io/v2/catalogs/\(catalogId)/albums/\(albumId)/assets")
+    }
+
+    func testAlbumAssetsWithLimitURL() {
+        let catalogId = Lightroom.Catalog.UUID(rawValue: UUID().uuidString)
+        let albumId = Lightroom.Album.UUID(rawValue: UUID().uuidString)
+        let limit: UInt = 42
+        XCTAssertEqual(API.albumAssets(catalogId: catalogId, albumId: albumId, limit: limit).url,
+                       "https://lr.adobe.io/v2/catalogs/\(catalogId)/albums/\(albumId)/assets?limit=\(limit)")
     }
 }

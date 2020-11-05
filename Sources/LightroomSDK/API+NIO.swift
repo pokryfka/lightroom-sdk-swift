@@ -45,7 +45,7 @@ extension AdobeIOClient {
         execute(.album(catalogId: catalogId, albumId: albumId))
     }
 
-    public func albumAssets(catalogId: Lightroom.Catalog.UUID, albumId: Lightroom.Album.UUID) -> NIO.EventLoopFuture<Lightroom.AlbumAssets> {
-        execute(.albumAssets(catalogId: catalogId, albumId: albumId))
+    public func albumAssets(catalogId: Lightroom.Catalog.UUID, albumId: Lightroom.Album.UUID, limit: UInt? = nil) -> NIO.EventLoopFuture<Lightroom.AlbumAssets> {
+        execute(.albumAssets(catalogId: catalogId, albumId: albumId, limit: limit))
     }
 }

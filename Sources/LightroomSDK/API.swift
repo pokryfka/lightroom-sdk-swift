@@ -43,7 +43,7 @@ extension Lightroom {
         case album(catalogId: Catalog.UUID, albumId: Album.UUID)
 
         /// List assets of an album.
-        case albumAssets(catalogId: Catalog.UUID, albumId: Album.UUID)
+        case albumAssets(catalogId: Catalog.UUID, albumId: Album.UUID, limit: UInt?)
 
         internal var method: AdobeIOClient.Request.Method {
             switch self {
@@ -82,8 +82,19 @@ extension Lightroom {
                 return value
             case let .album(catalogId, albumId):
                 return "catalogs/\(catalogId)/albums/\(albumId)"
-            case let .albumAssets(catalogId, albumId):
-                return "catalogs/\(catalogId)/albums/\(albumId)/assets"
+            case let .albumAssets(catalogId, albumId, limit):
+                var value = "catalogs/\(catalogId)/albums/\(albumId)/assets"
+                // TODO: make it more generic
+                let params = [
+                    "limit": limit.flatMap(String.init),
+                ]
+                .compactMapValues { $0 }
+                .map { "\($0.0)=\($0.1)" }
+                .joined(separator: "&")
+                if params.isEmpty == false {
+                    value.append("?\(params)")
+                }
+                return value
             }
         }
 
