@@ -28,6 +28,7 @@ jobs:
       matrix:
         images:
         - swift:5.2-amazonlinux2
+        - swift:5.3-amazonlinux2
     container:
       image: ${{ matrix.images }}
 
